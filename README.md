@@ -2,7 +2,7 @@
 
 ## ナビイベントの説明
 |イベント名|イベント説明|
-|||
+|-|-|
 |and_then_exit_left|この先左 出口|
 |and_then_exit_right|この先右 出口|
 |and_then_go_straight|この先直進|
