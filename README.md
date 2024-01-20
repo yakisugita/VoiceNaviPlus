@@ -1,43 +1,40 @@
 # VoiceNaviPlus
+VoiceNaviPlus / こえナビ+ は、ETS2向けに作られた外部音声ナビです。
 
-## ナビイベントの説明
-|イベント名|イベント説明|
-|-|-|
-|and_then_exit_left|この先左 出口|
-|and_then_exit_right|この先右 出口|
-|and_then_go_straight|この先直進|
-|and_then_keep_left|この先左車線|
-|and_then_keep_right|この先右車線|
-|and_then_turn_left|この先左|
-|and_then_turn_right|この先左|
-|compound_exit_left|複合-左 出口|
-|compound_exit_right|複合-右 出口|
-|compound_go_straight|複合-直進|
-|compound_keep_left|複合-左車線|
-|compound_keep_right|複合-右車線|
-|compound_turn_left|複合-左|
-|compound_turn_right|複合-右|
-|exit_left|左 出口|
-|exit_now|出口|
-|exit_right|右 出口|
-|finish|到着|
-|go_straight|直進|
-|keep_left|左車線|
-|keep_right|右車線|
-|prepare_exit_left|予告 左 出口|
-|prepare_exit_right|予告 右 出口|
-|prepare_turn_left|予告 左|
-|prepare_turn_right|予告 右|
-|recomputing|再検索|
-|roundabout_1|ラウンドアバウト 1番目出口|
-|roundabout_2|ラウンドアバウト 2番目出口|
-|roundabout_3|ラウンドアバウト 3番目出口|
-|roundabout_4|ラウンドアバウト 4番目出口|
-|roundabout_5|ラウンドアバウト 5番目出口|
-|roundabout_6|ラウンドアバウト 6番目出口|
-|speed_signal|速度超過(効果音)|
-|speed_warning|速度超過(音声案内)|
-|start|案内開始|
-|turn_left|左|
-|turn_right|右|
-|u_turn|Uターン|
+# 環境
+ETS2が不便なく動作するスペック
+.NET Framework 4.8 ランタイム
+ランタイム[こちらからダウンロードできます](https://dotnet.microsoft.com/ja-jp/download/dotnet-framework/net48)。
+
+# 仕組み
+dllファイルをETS2のpluginフォルダに入れておくと、ETS2がそのdllファイルを読み込んでくれます。
+同梱のdllファイルは、ナビ音声のデータを共有メモリに吐き出すという動作をします。
+なお、このdllファイルは、[dariowouters氏が公開している](https://github.com/dariowouters/ts-fmod-plugin)マルチプレイでもサウンド系modが使えるようにするプログラムを、焼きすぎた鮭が改変(サウンドを流す処理を削除・共有メモリへの書き込み処理を追加)したものになります。
+
+# インストール方法
+現在の最新バージョンであるv0.1用の手順を解説しています。今後変わる可能性があります。
+
+## dllの配置
+zipに同梱している`ts-fmod-plugin.dll`をETS2のプラグインフォルダーの中にコピーします。
+steamのライブラリでETS2を右クリックし、「管理」→「ローカルファイルを閲覧」と進みます。
+エクスプローラーが開きますので、「bin」→「win_x64」→「plugins」と進み、(「plugins」フォルダーがなければ作ってください)「plugins」フォルダーの中に`ts-fmod-plugin.dll`をコピーします。
+ファイル名は変えてもOKですが、拡張子は変えないようにしてください。
+
+## 音声ファイルの作成
+音声ファイルは`.wav`にのみ対応しています。
+作成には多くの場合文章読み上げソフトを使うことになると思います。
+文章読み上げソフトの中には音声ファイルの配布を禁止しているものがあるため、音声ファイルの扱いには注意してください。
+
+## 音声ファイルの配置
+音声ファイルを配置する場所は`exeファイルのあるフォルダー\profiles\[任意のフォルダー名]\`です。このときのフォルダー名が後で出てくるプロファイル名となります。
+なお、このソフトはファイル名先頭4ケタの数字で流す音声ファイルを識別しているので、ファイル名の先頭には4桁数字を入れてください。
+4桁数字と内容の組み合わせは[idList.md](https://github.com/yakisugita/VoiceNaviPlus/blob/master/idList.md)に記載しています。
+数字の後ろはキャラクター名やセリフを書いておくと判別しやすいと思います。
+
+## ソフトの起動
+ソフトを起動したらプロファイルを選択してください。v0.1では保存機能を搭載していないため、起動後は必ずこの動作が必要です。
+
+## ETS2の設定
+ETS2のプロファイルを読み込んだら、「オーディオ」設定から音声案内を有効にし、「言語と音声」に何か適当な言語を設定してください。
+そのあと、音声案内の音量を0にしてください。
+この操作を忘れると読み上げされなかったり、二重に音声が流れたりします。
