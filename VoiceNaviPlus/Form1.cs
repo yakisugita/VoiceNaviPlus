@@ -47,14 +47,14 @@ namespace VoiceNaviPlus
                 // 変わった時だけ処理する
                 if (voice != last_voice)
                 {
-                    label1.Text = voice;
-                    Console.WriteLine(label1.Text);
+                    playing.Text = voice;
+                    Console.WriteLine(playing.Text);
 
                     // イベント名判定
                     string voice_id = "";
-                    if (label1.Text != "")
+                    if (playing.Text != "")
                     {
-                        switch (label1.Text)
+                        switch (playing.Text)
                         {
                             case "start": voice_id = "0010"; break;
                             case "finish": voice_id = "0020"; break;
