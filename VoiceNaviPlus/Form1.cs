@@ -99,6 +99,8 @@ namespace VoiceNaviPlus
                             case "compound_exit_right": voice_id = "0550"; break;
                             case "compound_keep_left": voice_id = "0560"; break;
                             case "compound_keep_right": voice_id = "0570"; break;
+
+                            default: voice_id = "0000"; break;
                         }
 
                         // exeがあるディレクトリ\resを探索
@@ -109,11 +111,17 @@ namespace VoiceNaviPlus
                         System.IO.DirectoryInfo dir_info = new System.IO.DirectoryInfo(profile_dir);
                         if (dir_info.Exists)
                         {
-                            System.IO.FileInfo[] files = dir_info.GetFiles("0010*.wav", System.IO.SearchOption.AllDirectories);
+                            System.IO.FileInfo[] files = dir_info.GetFiles(voice_id + "*.wav", System.IO.SearchOption.AllDirectories);
 
                             if (files.Length >= 2)
                             {
                                 // 同じIDのファイルが複数あればランダム再生
+                                // 0～数-1の乱数生成
+                                Random random = new Random();
+                                int order = random.Next(files.Length);
+
+                                player = new System.Media.SoundPlayer(files[order].FullName);
+                                player.Play();
                             }
                             else if (files.Length == 1)
                             {
