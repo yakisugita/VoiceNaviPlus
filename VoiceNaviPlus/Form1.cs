@@ -26,12 +26,30 @@ namespace VoiceNaviPlus
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            // exeがあるディレクトリ\profilesを探索
+            string profile_dir = Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\profiles";
+
+            System.IO.DirectoryInfo dir_info = new System.IO.DirectoryInfo(profile_dir);
+            if (dir_info.Exists)
+            {
+                System.IO.DirectoryInfo[] profile_dirs = dir_info.GetDirectories("*", System.IO.SearchOption.AllDirectories);
+
+                // 見つかったディレクトリをプロファイルリストに追加していく
+                foreach (System.IO.DirectoryInfo profile in profile_dirs)
+                {
+                    profiles.Items.Add(profile.Name);
+                }
+            }
+            else
+            {
+                Console.WriteLine("profilesフォルダが存在しません");
+                notify.Text = "profilesフォルダが存在しません";
+            }
         }
 
         private string last_voice = "";
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void memTimer_Tick(object sender, EventArgs e)
         {
             try
             {
@@ -47,6 +65,8 @@ namespace VoiceNaviPlus
                 // 変わった時だけ処理する
                 if (voice != last_voice)
                 {
+                    notify.Text = "正常動作中";
+
                     playing.Text = voice;
                     Console.WriteLine(playing.Text);
 
@@ -103,9 +123,8 @@ namespace VoiceNaviPlus
                             default: voice_id = "0000"; break;
                         }
 
-                        // exeがあるディレクトリ\resを探索
-                        const string profile = "res";
-                        string profile_dir = Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\" + profile;
+                        // exeがあるディレクトリ\profiles\プロファイル名を探索
+                        string profile_dir = Directory.GetParent(Assembly.GetExecutingAssembly().Location.ToString()) + "\\profiles\\" + profiles.SelectedItem;
                         Console.WriteLine(profile_dir);
 
                         System.IO.DirectoryInfo dir_info = new System.IO.DirectoryInfo(profile_dir);
@@ -140,6 +159,7 @@ namespace VoiceNaviPlus
                         else
                         {
                             Console.WriteLine("リソースフォルダが存在しません");
+                            notify.Text = "リソースフォルダが存在しません";
                         }
                     }
                 }
@@ -152,7 +172,17 @@ namespace VoiceNaviPlus
             catch (Exception error)
             {
                 Debug.Write(error);
+                notify.Text = "ETS2停止";
             }
+        }
+
+        private void EditProfileMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("未実装の機能です", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            // プロファイル編集フォームを開く
+            //ProfileForm profile_form = new ProfileForm();
+            //profile_form.ShowDialog();
         }
     }
 }

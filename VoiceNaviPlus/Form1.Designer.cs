@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.memTimer = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.playingLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.playing = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ファイルToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditProfileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.本体設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.インストールToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.pluginsLabel = new System.Windows.Forms.Label();
             this.volume = new System.Windows.Forms.TrackBar();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.profileLabel = new System.Windows.Forms.Label();
-            this.profile = new System.Windows.Forms.ComboBox();
-            this.プロファイル編集ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.インストールToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.profiles = new System.Windows.Forms.ComboBox();
+            this.profilesLabel = new System.Windows.Forms.Label();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.notify = new System.Windows.Forms.ToolStripStatusLabel();
-            this.本体設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volume)).BeginInit();
@@ -56,10 +56,9 @@
             this.statusStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // timer1
+            // memTimer
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.memTimer.Tick += new System.EventHandler(this.memTimer_Tick);
             // 
             // statusStrip1
             // 
@@ -99,12 +98,31 @@
             // ファイルToolStripMenuItem
             // 
             this.ファイルToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.プロファイル編集ToolStripMenuItem,
+            this.EditProfileMenuItem,
             this.本体設定ToolStripMenuItem,
             this.インストールToolStripMenuItem});
             this.ファイルToolStripMenuItem.Name = "ファイルToolStripMenuItem";
             this.ファイルToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.ファイルToolStripMenuItem.Text = "ファイル";
+            // 
+            // EditProfileMenuItem
+            // 
+            this.EditProfileMenuItem.Name = "EditProfileMenuItem";
+            this.EditProfileMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.EditProfileMenuItem.Text = "現在のプロファイル編集";
+            this.EditProfileMenuItem.Click += new System.EventHandler(this.EditProfileMenuItem_Click);
+            // 
+            // 本体設定ToolStripMenuItem
+            // 
+            this.本体設定ToolStripMenuItem.Name = "本体設定ToolStripMenuItem";
+            this.本体設定ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.本体設定ToolStripMenuItem.Text = "本体設定";
+            // 
+            // インストールToolStripMenuItem
+            // 
+            this.インストールToolStripMenuItem.Name = "インストールToolStripMenuItem";
+            this.インストールToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.インストールToolStripMenuItem.Text = "インストール";
             // 
             // listBox1
             // 
@@ -139,12 +157,14 @@
             // 
             this.volume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.volume.AutoSize = false;
+            this.volume.Enabled = false;
             this.volume.Location = new System.Drawing.Point(233, 287);
             this.volume.Maximum = 100;
             this.volume.Name = "volume";
             this.volume.Size = new System.Drawing.Size(99, 20);
             this.volume.TabIndex = 6;
             this.volume.TickFrequency = 10;
+            this.volume.Value = 100;
             // 
             // splitContainer1
             // 
@@ -156,8 +176,8 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.profile);
-            this.splitContainer1.Panel1.Controls.Add(this.profileLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.profiles);
+            this.splitContainer1.Panel1.Controls.Add(this.profilesLabel);
             // 
             // splitContainer1.Panel2
             // 
@@ -167,36 +187,25 @@
             this.splitContainer1.SplitterDistance = 170;
             this.splitContainer1.TabIndex = 7;
             // 
-            // profileLabel
+            // profiles
             // 
-            this.profileLabel.AutoSize = true;
-            this.profileLabel.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.profileLabel.Location = new System.Drawing.Point(13, 11);
-            this.profileLabel.Name = "profileLabel";
-            this.profileLabel.Size = new System.Drawing.Size(78, 21);
-            this.profileLabel.TabIndex = 0;
-            this.profileLabel.Text = "プロファイル";
+            this.profiles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.profiles.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.profiles.FormattingEnabled = true;
+            this.profiles.Location = new System.Drawing.Point(7, 35);
+            this.profiles.Name = "profiles";
+            this.profiles.Size = new System.Drawing.Size(156, 29);
+            this.profiles.TabIndex = 1;
             // 
-            // profile
+            // profilesLabel
             // 
-            this.profile.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.profile.FormattingEnabled = true;
-            this.profile.Location = new System.Drawing.Point(7, 35);
-            this.profile.Name = "profile";
-            this.profile.Size = new System.Drawing.Size(156, 29);
-            this.profile.TabIndex = 1;
-            // 
-            // プロファイル編集ToolStripMenuItem
-            // 
-            this.プロファイル編集ToolStripMenuItem.Name = "プロファイル編集ToolStripMenuItem";
-            this.プロファイル編集ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.プロファイル編集ToolStripMenuItem.Text = "現在のプロファイル編集";
-            // 
-            // インストールToolStripMenuItem
-            // 
-            this.インストールToolStripMenuItem.Name = "インストールToolStripMenuItem";
-            this.インストールToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.インストールToolStripMenuItem.Text = "インストール";
+            this.profilesLabel.AutoSize = true;
+            this.profilesLabel.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.profilesLabel.Location = new System.Drawing.Point(13, 11);
+            this.profilesLabel.Name = "profilesLabel";
+            this.profilesLabel.Size = new System.Drawing.Size(78, 21);
+            this.profilesLabel.TabIndex = 0;
+            this.profilesLabel.Text = "プロファイル";
             // 
             // statusStrip2
             // 
@@ -212,14 +221,8 @@
             // 
             this.notify.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.notify.Name = "notify";
-            this.notify.Size = new System.Drawing.Size(104, 21);
-            this.notify.Text = "更新があります";
-            // 
-            // 本体設定ToolStripMenuItem
-            // 
-            this.本体設定ToolStripMenuItem.Name = "本体設定ToolStripMenuItem";
-            this.本体設定ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.本体設定ToolStripMenuItem.Text = "本体設定";
+            this.notify.Size = new System.Drawing.Size(105, 21);
+            this.notify.Text = "通知用テキスト";
             // 
             // Form1
             // 
@@ -256,7 +259,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer memTimer;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel playingLabel;
         private System.Windows.Forms.ToolStripStatusLabel playing;
@@ -266,9 +269,9 @@
         private System.Windows.Forms.Label pluginsLabel;
         private System.Windows.Forms.TrackBar volume;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ComboBox profile;
-        private System.Windows.Forms.Label profileLabel;
-        private System.Windows.Forms.ToolStripMenuItem プロファイル編集ToolStripMenuItem;
+        private System.Windows.Forms.ComboBox profiles;
+        private System.Windows.Forms.Label profilesLabel;
+        private System.Windows.Forms.ToolStripMenuItem EditProfileMenuItem;
         private System.Windows.Forms.ToolStripMenuItem インストールToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip2;
         private System.Windows.Forms.ToolStripStatusLabel notify;
