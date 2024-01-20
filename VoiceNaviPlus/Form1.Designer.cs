@@ -32,7 +32,6 @@
             this.memTimer = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.playingLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.playing = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ファイルToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditProfileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +45,7 @@
             this.profilesLabel = new System.Windows.Forms.Label();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.notify = new System.Windows.Forms.ToolStripStatusLabel();
+            this.playing = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volume)).BeginInit();
@@ -58,13 +58,13 @@
             // 
             // memTimer
             // 
+            this.memTimer.Enabled = true;
             this.memTimer.Tick += new System.EventHandler(this.memTimer_Tick);
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.playingLabel,
-            this.playing});
+            this.playingLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 285);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(344, 26);
@@ -77,13 +77,6 @@
             this.playingLabel.Name = "playingLabel";
             this.playingLabel.Size = new System.Drawing.Size(65, 21);
             this.playingLabel.Text = "再生中 :";
-            // 
-            // playing
-            // 
-            this.playing.Font = new System.Drawing.Font("Yu Gothic UI", 12F);
-            this.playing.Name = "playing";
-            this.playing.Size = new System.Drawing.Size(89, 21);
-            this.playing.Text = "初期テキスト";
             // 
             // menuStrip1
             // 
@@ -224,11 +217,23 @@
             this.notify.Size = new System.Drawing.Size(105, 21);
             this.notify.Text = "通知用テキスト";
             // 
+            // playing
+            // 
+            this.playing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.playing.AutoSize = true;
+            this.playing.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.playing.Location = new System.Drawing.Point(65, 289);
+            this.playing.Name = "playing";
+            this.playing.Size = new System.Drawing.Size(89, 21);
+            this.playing.TabIndex = 9;
+            this.playing.Text = "初期テキスト";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(344, 311);
+            this.Controls.Add(this.playing);
             this.Controls.Add(this.statusStrip2);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.volume);
@@ -262,7 +267,6 @@
         private System.Windows.Forms.Timer memTimer;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel playingLabel;
-        private System.Windows.Forms.ToolStripStatusLabel playing;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ファイルToolStripMenuItem;
         private System.Windows.Forms.ListBox listBox1;
@@ -276,6 +280,7 @@
         private System.Windows.Forms.StatusStrip statusStrip2;
         private System.Windows.Forms.ToolStripStatusLabel notify;
         private System.Windows.Forms.ToolStripMenuItem 本体設定ToolStripMenuItem;
+        private System.Windows.Forms.Label playing;
     }
 }
 
