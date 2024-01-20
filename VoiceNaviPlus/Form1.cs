@@ -169,10 +169,13 @@ namespace VoiceNaviPlus
                 accessor.Dispose();
                 share_mem.Dispose();
             }
-            catch (Exception error)
+            catch (System.IO.FileNotFoundException)
+            {
+                notify.Text = "ETS2停止";
+            }
+            catch( Exception error)
             {
                 Debug.Write(error);
-                notify.Text = "ETS2停止";
             }
         }
 
