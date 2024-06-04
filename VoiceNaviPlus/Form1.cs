@@ -11,13 +11,16 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace VoiceNaviPlus
 {
     public partial class Form1 : Form
     {
-        private System.Media.SoundPlayer player;
+        private System.Windows.Media.MediaPlayer player = new MediaPlayer();
+        private List<string> playQueue = new List<string>();
+
 
         public Form1()
         {
@@ -45,6 +48,26 @@ namespace VoiceNaviPlus
                 Console.WriteLine("profilesフォルダが存在しません");
                 notify.Text = "profilesフォルダが存在しません";
             }
+
+            // 音量
+            player.Volume = 1.0;
+
+            // 再生キュー
+            player.MediaEnded += (sender2, e2) =>
+            {
+                playQueue.RemoveAt(0);
+                if (playQueue.Count > 0)
+                {
+                    player.Open(new Uri(playQueue.First()));
+                    player.Play();
+                }
+            };
+        }
+
+        private void playSound()
+        {
+            player.Open(new Uri(playQueue.First()));
+            player.Play();
         }
 
         private string last_voice = "";
@@ -138,16 +161,14 @@ namespace VoiceNaviPlus
                                 // 0～数-1の乱数生成
                                 Random random = new Random();
                                 int order = random.Next(files.Length);
-
-                                player = new System.Media.SoundPlayer(files[order].FullName);
-                                player.Play();
+                                playQueue.Add(files[order].FullName);
+                                if (playQueue.Count == 1) playSound();
                             }
                             else if (files.Length == 1)
                             {
                                 // ファイルが一個ならそのまま再生
-                                player = new System.Media.SoundPlayer(files[0].FullName);
-                                player.Play();
-
+                                playQueue.Add(files[0].FullName);
+                                if (playQueue.Count == 1) playSound();
                             }
 
                             //結果を出力
@@ -192,6 +213,11 @@ namespace VoiceNaviPlus
         {
             topMostButton.Checked = !topMostButton.Checked;
             TopMost = topMostButton.Checked;
+        }
+
+        private void volume_Scroll(object sender, EventArgs e)
+        {
+            player.Volume = (float)volume.Value / 100;
         }
     }
 }

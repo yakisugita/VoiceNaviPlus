@@ -131,7 +131,7 @@
             // topMostButton
             // 
             this.topMostButton.Name = "topMostButton";
-            this.topMostButton.Size = new System.Drawing.Size(180, 22);
+            this.topMostButton.Size = new System.Drawing.Size(152, 22);
             this.topMostButton.Text = "常に手前に表示";
             this.topMostButton.Click += new System.EventHandler(this.TopMostButton_Click);
             // 
@@ -168,7 +168,6 @@
             // 
             this.volume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.volume.AutoSize = false;
-            this.volume.Enabled = false;
             this.volume.Location = new System.Drawing.Point(233, 287);
             this.volume.Maximum = 100;
             this.volume.Name = "volume";
@@ -176,6 +175,7 @@
             this.volume.TabIndex = 6;
             this.volume.TickFrequency = 10;
             this.volume.Value = 100;
+            this.volume.Scroll += new System.EventHandler(this.volume_Scroll);
             // 
             // splitContainer1
             // 
