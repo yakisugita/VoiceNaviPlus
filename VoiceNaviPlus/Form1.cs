@@ -187,5 +187,11 @@ namespace VoiceNaviPlus
             //ProfileForm profile_form = new ProfileForm();
             //profile_form.ShowDialog();
         }
+
+        private void TopMostButton_Click(object sender, EventArgs e)
+        {
+            topMostButton.Checked = !topMostButton.Checked;
+            TopMost = topMostButton.Checked;
+        }
     }
 }

@@ -37,6 +37,8 @@
             this.EditProfileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.本体設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.インストールToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ツールToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.topMostButton = new System.Windows.Forms.ToolStripMenuItem();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.pluginsLabel = new System.Windows.Forms.Label();
             this.volume = new System.Windows.Forms.TrackBar();
@@ -81,7 +83,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ファイルToolStripMenuItem});
+            this.ファイルToolStripMenuItem,
+            this.ツールToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(344, 24);
@@ -116,6 +119,21 @@
             this.インストールToolStripMenuItem.Name = "インストールToolStripMenuItem";
             this.インストールToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.インストールToolStripMenuItem.Text = "インストール";
+            // 
+            // ツールToolStripMenuItem
+            // 
+            this.ツールToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.topMostButton});
+            this.ツールToolStripMenuItem.Name = "ツールToolStripMenuItem";
+            this.ツールToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.ツールToolStripMenuItem.Text = "ツール";
+            // 
+            // topMostButton
+            // 
+            this.topMostButton.Name = "topMostButton";
+            this.topMostButton.Size = new System.Drawing.Size(180, 22);
+            this.topMostButton.Text = "常に手前に表示";
+            this.topMostButton.Click += new System.EventHandler(this.TopMostButton_Click);
             // 
             // listBox1
             // 
@@ -280,6 +298,8 @@
         private System.Windows.Forms.ToolStripStatusLabel notify;
         private System.Windows.Forms.ToolStripMenuItem 本体設定ToolStripMenuItem;
         private System.Windows.Forms.Label playing;
+        private System.Windows.Forms.ToolStripMenuItem ツールToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem topMostButton;
     }
 }
 
